@@ -24,7 +24,11 @@ var App = React.createClass({
 	render: function(){
 		return(
 			<div>
-				MY APP
+				<div className="off-canvas-wrapper">
+					<div className="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+					</div>
+				</div>
 			</div>
 		);
 	},
