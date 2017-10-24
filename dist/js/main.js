@@ -19945,6 +19945,7 @@ AppDispatcher.register(function(payload){
 			AppStore.addNote(action.note);
 
 			// API Save
+			AppAPI.addNote(action.note);
 
 			//Emit Change
 			AppStore.emit(CHANGE_EVENT);
@@ -19959,14 +19960,34 @@ module.exports = AppStore;
 var AppActions = require('../actions/AppActions');
 
 module.exports = {
-	
+	addNote: function(note){
+        $.ajax({
+            url: 'https://api.mongolab.com/api/1/databases/stickypad/collections/notes?apiKey=J2NIbcnSWo0ud0j3XD2f4Hdy-53b13DO',
+            data: JSON.stringify(note),
+            type: "POST",
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+            },
+            contentType: 'application/json'
+        });
+    }
 }
 
 },{"../actions/AppActions":164}],172:[function(require,module,exports){
 var AppActions = require('../actions/AppActions');
 
 module.exports = {
-	
+	addNote: function(note){
+        $.ajax({
+            url: 'https://api.mongolab.com/api/1/databases/stickypad/collections/notes?apiKey=J2NIbcnSWo0ud0j3XD2f4Hdy-53b13DO',
+            data: JSON.stringify(note),
+            type: "POST",
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+            },
+            contentType: 'application/json'
+        });
+    }
 }
 
 },{"../actions/AppActions":164}]},{},[169]);

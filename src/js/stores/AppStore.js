@@ -40,6 +40,7 @@ AppDispatcher.register(function(payload){
 			AppStore.addNote(action.note);
 
 			// API Save
+			AppAPI.addNote(action.note);
 
 			//Emit Change
 			AppStore.emit(CHANGE_EVENT);
