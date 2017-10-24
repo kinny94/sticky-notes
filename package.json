@@ -1,8 +1,7 @@
 {
 	"name": "SticyPad",
 	"version": "1.0.0",
-	"description": "gulp
-	",
+	"description": "gulp",
 	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
