@@ -22,7 +22,7 @@ var App = React.createClass({
 	componentUnmount: function(){
 		AppStore.removeChangeListener(this._onChange);
 	},
-
+	
 	render: function(){
 		return(
 			<div>

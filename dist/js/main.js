@@ -19846,7 +19846,7 @@ var App = React.createClass({displayName: "App",
 	componentUnmount: function(){
 		AppStore.removeChangeListener(this._onChange);
 	},
-
+	
 	render: function(){
 		return(
 			React.createElement("div", null, 
@@ -19882,13 +19882,13 @@ var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 
 var Note = React.createClass({displayName: "Note",
-
+    
 	render: function(){
-        console.log(this.props.notes);
+        console.log(this.props.note);
 		return(
             
 			React.createElement("div", {className: "column "}, 
-                React.createElement("div", {className: "note"}, React.createElement("p", null, this.props.notes))
+                React.createElement("div", {className: "note"}, React.createElement("p", null, this.props.note.text))
 			)
 		);
     }
@@ -19906,9 +19906,11 @@ var Note = require('./Note');
 var NoteList = React.createClass({displayName: "NoteList",
 
 	render: function(){
+        let length = this.props.notes.length;
+        
 		return(
 			React.createElement("div", {className: "row small-up-2 medium-up-3 large-up-4"}, 
-                
+                   
                     this.props.notes.map(function(note, i){
                         return (
                             React.createElement(Note, {note: note, key: i})
