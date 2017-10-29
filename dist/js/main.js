@@ -19779,6 +19779,13 @@ var AppActions = {
             actionType: AppConstants.RECEIVE_NOTES,
             notes: notes
         });
+    },
+
+    removeNote: function(id){
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.REMOVE_NOTE,
+            id: id
+        });
     }
 }
 
@@ -19888,9 +19895,13 @@ var Note = React.createClass({displayName: "Note",
 		return(
             
 			React.createElement("div", {className: "columnss"}, 
-                React.createElement("div", {className: "note"}, React.createElement("p", null, this.props.note.text))
+                React.createElement("div", {onDoubleClick: this.removeNote.bind(this, this.props.note._id), className: "note"}, React.createElement("p", null, this.props.note.text))
 			)
 		);
+    },
+
+    removeNote: function(i, j){
+        AppActions.removeNote(i.$oid);
     }
 
 });
@@ -19926,7 +19937,8 @@ module.exports = NoteList;
 },{"../actions/AppActions":164,"../stores/AppStore":172,"./Note":167,"react":163}],169:[function(require,module,exports){
 module.exports = {
     ADD_NOTE: 'ADD_NOTE',
-    RECEIVE_NOTES: 'RECEIVE_NOTES'
+    RECEIVE_NOTES: 'RECEIVE_NOTES',
+    REMOVE_NOTE: 'REMOVE_NOTE'
 }
 
 },{}],170:[function(require,module,exports){
@@ -19984,6 +19996,11 @@ var AppStore = assign({}, EventEmitter.prototype, {
 		//console.log(_notes);
 	},
 
+	removeNote: function(id){
+		var index = _notes.findIndex(x => x._id.$oid === id);
+		_notes.splice(index, 1);
+	},
+
 	emitChange: function(){
 		this.emit(CHANGE_EVENT);
 	},
@@ -20024,6 +20041,18 @@ AppDispatcher.register(function(payload){
 			//Emit Change
 			AppStore.emit(CHANGE_EVENT);
 			break;
+		
+		case AppConstants.REMOVE_NOTE:
+			console.log('Removing Note...');
+
+			// Store Save
+			AppStore.removeNote(action.id);
+
+			AppAPI.removeNote(action.id);
+
+			//Emit Change
+			AppStore.emit(CHANGE_EVENT);
+			break;
 	}
 
 	return true;
@@ -20057,6 +20086,21 @@ module.exports = {
                 console.log(err);
             }.bind(this)
         })
+    },
+
+    removeNote: function(id){
+        $.ajax({
+            url: 'https://api.mongolab.com/api/1/databases/stickypad/collections/notes/' + id + '?apiKey=J2NIbcnSWo0ud0j3XD2f4Hdy-53b13DO',
+            type: "DELETE",
+            async: true,
+            timeout: 300000,
+            success: function(data){
+                console.log("Note Deleted");
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.log(err);
+            }
+        });
     }
 }
 
@@ -20086,6 +20130,21 @@ module.exports = {
                 console.log(err);
             }.bind(this)
         })
+    },
+
+    removeNote: function(id){
+        $.ajax({
+            url: 'https://api.mongolab.com/api/1/databases/stickypad/collections/notes/' + id + '?apiKey=J2NIbcnSWo0ud0j3XD2f4Hdy-53b13DO',
+            type: "DELETE",
+            async: true,
+            timeout: 300000,
+            success: function(data){
+                console.log("Note Deleted");
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.log(err);
+            }
+        });
     }
 }
 
