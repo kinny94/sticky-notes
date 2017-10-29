@@ -8,7 +8,7 @@ var Note = React.createClass({
         console.log(this.props.note);
 		return(
             
-			<div className="column ">
+			<div className="columnss">
                 <div className="note"><p>{this.props.note.text}</p></div>
 			</div>
 		);

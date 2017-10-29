@@ -19847,7 +19847,7 @@ var App = React.createClass({displayName: "App",
 		AppStore.removeChangeListener(this._onChange);
 	},
 	
-	render: function(){
+	render: function(){  
 		return(
 			React.createElement("div", null, 
 				React.createElement("div", {className: "off-canvas-wrapper"}, 
@@ -19887,7 +19887,7 @@ var Note = React.createClass({displayName: "Note",
         console.log(this.props.note);
 		return(
             
-			React.createElement("div", {className: "column "}, 
+			React.createElement("div", {className: "columnss"}, 
                 React.createElement("div", {className: "note"}, React.createElement("p", null, this.props.note.text))
 			)
 		);
@@ -19905,9 +19905,7 @@ var Note = require('./Note');
 
 var NoteList = React.createClass({displayName: "NoteList",
 
-	render: function(){
-        let length = this.props.notes.length;
-        
+	render: function(){ 
 		return(
 			React.createElement("div", {className: "row small-up-2 medium-up-3 large-up-4"}, 
                    
@@ -20012,6 +20010,7 @@ AppDispatcher.register(function(payload){
 
 			//Emit Change
 			AppStore.emit(CHANGE_EVENT);
+			break;
 
 		case AppConstants.RECEIVE_NOTES:
 			console.log('Receiving Note...');
@@ -20024,6 +20023,7 @@ AppDispatcher.register(function(payload){
 
 			//Emit Change
 			AppStore.emit(CHANGE_EVENT);
+			break;
 	}
 
 	return true;

@@ -5,9 +5,7 @@ var Note = require('./Note');
 
 var NoteList = React.createClass({
 
-	render: function(){
-        let length = this.props.notes.length;
-        
+	render: function(){ 
 		return(
 			<div className="row small-up-2 medium-up-3 large-up-4">
                 {   

@@ -23,7 +23,7 @@ var App = React.createClass({
 		AppStore.removeChangeListener(this._onChange);
 	},
 	
-	render: function(){
+	render: function(){  
 		return(
 			<div>
 				<div className="off-canvas-wrapper">
